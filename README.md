@@ -1,8 +1,8 @@
-# 🛡️ Autonomous Privacy-First AI SOC Triage & SOAR Agent
+# Autonomous Privacy-First AI SOC Triage & SOAR Agent
 
 A local, air-gapped **Agentic AI Security Operations (SecOps) pipeline** engineered to automate Tier-1/Tier-2 alert triage, correlate SIEM telemetry, and execute automated SOAR containment with **zero external cloud data exposure** (GDPR / DSGVO compliant).
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```text
 [ Incoming SIEM Alert (JSON) ]
@@ -18,18 +18,18 @@ A local, air-gapped **Agentic AI Security Operations (SecOps) pipeline** enginee
  (IP Reputation)       (User Baseline)     (Only if Risk >= 80)
 ```
 
-## 🚀 Key Engineering Features
+## Key Engineering Features
 * **100% On-Premise / Privacy-First Execution:** Runs locally via **Ollama** (`qwen2.5:3b`), eliminating the risk of leaking sensitive PII, internal IPs, or security telemetry to third-party LLM APIs.
 * **Deterministic Tool-Use Guardrails:** Forces the LLM to query a normalized SQLite SIEM telemetry store (`auth_logs` and `threat_intel`) via Python function-calling before forming a verdict.
 * **Hallucination Mitigation:** Configured with strict zero-temperature (`0.0`) inference and evidence-separation prompts to prevent cross-log field blending.
 * **Safe SOAR Containment:** Includes an automated perimeter firewall blocklist action (`block_malicious_ip`) gated by strict risk-score thresholds (`>= 80`) to prevent self-inflicted Denial of Service (DoS) on legitimate corporate IPs.
 
-## 🛠️ Tech Stack
+## Tech Stack
 * **AI Runtime & Model:** Ollama (`qwen2.5:3b`)
 * **Backend & Orchestration:** Python 3, `ollama` SDK
 * **SIEM & Threat Intel Storage:** SQLite3 (Abstracted Wazuh Indexer & CDB Threat Lists)
 
-## ⚡ Quick Start
+## Quick Start
 ```bash
 # 1. Pull the local model
 ollama pull qwen2.5:3b
